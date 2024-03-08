@@ -5,7 +5,7 @@ import pandas as pd
 import os
 
 
-from src.components.data_ingestion import DataIngestion
+# from src.components.data_ingestion import DataIngestion
 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
@@ -24,8 +24,8 @@ class DataTransformation:
     def __init__(self):
         self.datatransformation_config = DataTransformationConfig()
 
-        dataingestObj = DataIngestion()
-        self.raw_pth, self.train_pth, self.test_pth = dataingestObj.initiate_data_ingestion()
+        # dataingestObj = DataIngestion()
+        # self.raw_pth, self.train_pth, self.test_pth = dataingestObj.initiate_data_ingestion()
 
     def get_data_transformer_object(self):
         '''
@@ -36,7 +36,7 @@ class DataTransformation:
             num_features = ['writing_score', 'reading_score']
             cat_features = ['gender',
                             'race_ethnicity',
-                            'parental_level_of education',
+                            'parental_level_of_education',
                             'lunch',
                             'test_preparation_course']
             num_pipeline = Pipeline(
@@ -51,7 +51,7 @@ class DataTransformation:
                 steps = [
                     ("imputer", SimpleImputer(strategy = "most_frequent")),
                     ("one_hot_encoder", OneHotEncoder()),
-                    ("scaler", StandardScaler())
+                    ("scaler", StandardScaler(with_mean=False))
                 ]
             )
             logging.info("Categorical columns encoding completed")
@@ -71,10 +71,10 @@ class DataTransformation:
             raise CustomException(e,sys)
 
 
-    def initiate_data_tranformation(self):
+    def initiate_data_tranformation(self, train_pth, test_pth):
         try:
-            train_df = pd.read_csv(self.train_pth)
-            test_df = pd.read_csv(self.test_pth)
+            train_df = pd.read_csv(train_pth)
+            test_df = pd.read_csv(test_pth)
 
             logging.info("Reading train and test data is complete")
 
