@@ -22,8 +22,8 @@ def evaluate_model(X_train, y_train,
                     models):
     try:
         report = {}
-        for i in range(len(list(model))):
-            model = list(model.values())[i]
+        for i in range(len(list(models))):
+            model = list(models.values())[i]
             model.fit(X_train, y_train)
 
             y_train_pred = model.predict(X_train)
@@ -32,7 +32,7 @@ def evaluate_model(X_train, y_train,
             train_model_score = r2_score(y_train, y_train_pred)
             test_model_score = r2_score(y_test, y_test_pred)
 
-            report[list(model.keys())[i]] = test_model_score
+            report[list(models.keys())[i]] = test_model_score
 
         return report
 
