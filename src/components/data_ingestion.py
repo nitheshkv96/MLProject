@@ -52,8 +52,8 @@ class DataIngestion:
             raise CustomException(e, sys)
             
 
-if __name__ == "__main__":
-    obj = DataIngestion()
-    train_pth, test_pth, _ = obj.initiate_data_ingestion()
-    data_tranform_obj = DataTransformation()
-    train_arr, test_arr,_ = data_tranform_obj.initiate_data_tranformation(train_pth, test_pth)
+# if __name__ == "__main__":
+#     obj = DataIngestion()
+#     train_pth, test_pth, _ = obj.initiate_data_ingestion()
+#     data_tranform_obj = DataTransformation()
+#     train_arr, test_arr,_ = data_tranform_obj.initiate_data_tranformation(train_pth, test_pth)
